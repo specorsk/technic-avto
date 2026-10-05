@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Автосервис в Орске «Техник-Авто» – ремонт и обслуживание автомобилей</title>
+  <meta name="description" content="Автосервис «Техник-Авто» в Орске: ремонт двигателя и коробки передач, диагностика, развал-схождение, обслуживание иномарок и отечественных авто. Запись по телефону и онлайн.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <style>
+    :root{
+      --bg:#0f172a;
+      --bg-light:#111827;
+      --accent:#a9e200;
+      --accent-soft:#a0c758;
+      --text:#f9fafb;
+      --text-muted:#9ca3af;
+      --card:#020617;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:#020617;
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;display:block;}
+
+    .container{
+      width:100%;
+      max-width:1140px;
+      margin:0 auto;
+      padding:0 16px;
+    }
+    @media (max-width: 600px){
+      .container{
+        padding:0 20px; /* отступ текста от краёв на мобилке */
+      }
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(15,23,42,0.96);
+      border-bottom:1px solid rgba(148,163,184,0.2);
+      backdrop-filter:blur(12px);
+    }
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 0;
+      font-size:14px;
+      color:var(--text-muted);
+    }
+    .topbar span + span{margin-left:16px;}
+
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 0 14px;
+    }
+    .logo{
+      font-weight:700;
+      font-size:20px;
+      letter-spacing:0.03em;
+    }
+    .logo span{color:var(--accent);}
+    .nav-links{
+      display:flex;
+      gap:20px;
+      font-size:15px;
+      color:var(--text-muted);
+    }
+    .nav-links a:hover{color:var(--accent);}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 20px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:500;
+      transition:background 0.2s,transform 0.1s,box-shadow 0.2s;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background:var(--accent);
+      color:#111827;
+      box-shadow:0 10px 20px rgba(169,226,0,0.4);
+
+    }
+    .btn-primary:hover{
+      background:#a9e200;
+      transform:translateY(-1px);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(148,163,184,0.7);
+      color:var(--text);
+    }
+    .btn-outline:hover{
+      border-color:var(--accent);
+      color:var(--accent);
+    }
+
+    .hero{
+      background:radial-gradient(circle at top left,#1e293b 0,#020617 55%);
+      border-bottom:1px solid rgba(148,163,184,0.2);
+    }
+    .hero-inner{
+	display: grid;
+	grid-template-columns: 1.2fr 1fr;
+	gap: 32px;
+	padding-top: 32px;
+	padding-right: 16px;
+	padding-left: 16px;
+	padding-bottom: 40px;
+	align-items: center;
+    }
+    .hero-label{
+      display:inline-flex;
+      align-items:center;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(15,23,42,0.9);
+      border:1px solid rgba(148,163,184,0.5);
+      font-size:12px;
+      color:var(--text-muted);
+      margin-bottom:12px;
+    }
+    .hero-label span{
+	display: inline-flex;
+	width: 8px;
+	height: 8px;
+	border-radius: 999px;
+	background: var(--accent);
+	margin-right: 6px;
+	padding-right: 0px;
+	padding-left: 6px;
+    }
+    .hero h1{
+	font-size: 30px;
+	line-height: 1.15;
+	margin-bottom: 10px;
+	padding-right: 60px;
+    }
+    .hero h1 span{color:var(--accent);}
+    .hero-sub{
+      font-size:15px;
+      color:var(--text-muted);
+      margin-bottom:18px;
+    }
+    .hero-benefits{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:22px;
+    }
+    .hero-benefits div{
+      font-size:13px;
+      color:var(--text-muted);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.4);
+      background:rgba(15,23,42,0.9);
+    }
+    .hero-cta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .hero-note{
+      font-size:12px;
+      color:var(--text-muted);
+    }
+
+    .hero-card{
+      border-radius:18px;
+      background:linear-gradient(135deg,#020617, #0b1120);
+      border:1px solid rgba(148,163,184,0.4);
+      padding:18px;
+      box-shadow:0 24px 40px rgba(15,23,42,0.9);
+    }
+    .hero-card h3{
+      font-size:15px;
+      margin-bottom:8px;
+    }
+    .hero-card-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:13px;
+      color:var(--text-muted);
+      margin-bottom:6px;
+    }
+    .hero-card-row strong{
+      color:var(--text);
+    }
+    .hero-phone{
+      font-size:18px;
+      font-weight:600;
+      margin:10px 0 6px;
+    }
+    .hero-time{
+      font-size:13px;
+      color:var(--text-muted);
+    }
+
+    section{
+      padding:32px 0;
+      border-bottom:1px solid rgba(15,23,42,1);
+    }
+    .section-title{
+      font-size:22px;
+      margin-bottom:6px;
+    }
+    .section-sub{
+      font-size:14px;
+      color:var(--text-muted);
+      margin-bottom:18px;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1.3fr 1fr;
+      gap:24px;
+      align-items:start;
+    }
+    .pill-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:12px;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.4);
+      color:var(--text-muted);
+    }
+
+    .cards-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:14px;
+      border:1px solid rgba(31,41,55,1);
+      padding:14px 14px 16px;
+    }
+    .card h3{
+      font-size:15px;
+      margin-bottom:6px;
+    }
+    .card p{
+      font-size:13px;
+      color:var(--text-muted);
+    }
+    .card-tag{
+      font-size:11px;
+      color:var(--accent-soft);
+      margin-bottom:6px;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+    }
+
+    .two-cols{
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:20px;
+      align-items:start;
+    }
+
+    .reviews-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+    .review{
+      background:var(--card);
+      border-radius:12px;
+      border:1px solid rgba(31,41,55,1);
+      padding:12px 12px 14px;
+      font-size:13px;
+    }
+    .review-name{
+      font-weight:600;
+      margin-bottom:2px;
+    }
+    .review-car{
+      font-size:12px;
+      color:var(--text-muted);
+      margin-bottom:6px;
+    }
+
+    .contacts-grid{
+      display:grid;
+      grid-template-columns:1.1fr 1fr;
+      gap:20px;
+      align-items:start;
+    }
+    .contact-list p{
+      font-size:14px;
+      margin-bottom:4px;
+    }
+    .contact-list span{
+      color:var(--text-muted);
+    }
+    .form{
+      background:var(--card);
+      border-radius:14px;
+      border:1px solid rgba(31,41,55,1);
+      padding:14px;
+      font-size:14px;
+    }
+    .form-group{
+      margin-bottom:10px;
+    }
+    .form-group label{
+      display:block;
+      font-size:13px;
+      margin-bottom:4px;
+    }
+    .form-group input,
+    .form-group textarea{
+      width:100%;
+      border-radius:8px;
+      border:1px solid rgba(55,65,81,1);
+      background:#020617;
+      color:var(--text);
+      padding:7px 9px;
+      font-size:13px;
+      resize:vertical;
+    }
+    .form-group textarea{min-height:70px;}
+
+    footer{
+      padding:16px 0 20px;
+      font-size:12px;
+      color:var(--text-muted);
+      text-align:center;
+      border-top:1px solid rgba(15,23,42,1);
+    }
+
+    @media (max-width:900px){
+      .hero-inner,
+      .about-grid,
+      .cards-grid,
+      .two-cols,
+      .reviews-grid,
+      .contacts-grid{
+        grid-template-columns:1fr;
+      }
+      .cards-grid,
+      .reviews-grid{
+        grid-template-columns:1fr;
+      }
+      .nav-links{display:none;}
+      .topbar{flex-direction:column;align-items:flex-start;gap:4px;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="topbar">
+      <div>
+        <span>Орск, ул. Ясная 32</span>
+        <span>Ежедневно: 9:00–19:00</span>
+      </div>
+      <div>
+        <span>Запись по телефону: <strong>+7 (961) 927-40-40</strong></span>
+      </div>
+    </div>
+    <div class="nav">
+      <div class="logo">Техник<span>‑Авто</span></div>
+      <nav class="nav-links"> <a href="#services">Услуги</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <a href="tel:+79619274040" class="btn btn-primary">Позвонить</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div  class="container hero-inner">
+      <div>
+        <div class="hero-label">
+          <span></span> Автосервис в Орске для иномарок и отечественных авто
+        </div>
+        <h1>«Техник‑Авто» – автосервис в <span>Орске</span> с полным циклом ремонта</h1>
+        <p class="hero-sub">
+          Диагностика, ремонт двигателя и подвески, обслуживание АКПП и DSG, развал‑схождение и плановое ТО.
+          Работаем аккуратно, с гарантией и понятными сроками.
+        </p>
+        <div class="hero-benefits">
+          <div>Опыт работы более 20 лет</div>
+          <div>Сложный ремонт АКПП, DSG и двигателя</div>
+          <div>Подбор и заказ запчастей</div>
+        </div>
+        <div class="hero-cta">
+          <a href="tel:+79619274040" class="btn btn-primary">Записаться на сервис</a>
+        </div>
+        <p class="hero-note">
+          Обычно отвечаем в течение рабочего дня. Уточним проблему, согласуем время визита.
+        </p>
+      </div>
+      <aside class="hero-card">
+        <h3>Быстрая запись в автосервис</h3>
+        <div class="hero-card-row">
+          <span>Сегодня открыты:</span>
+          <strong>9:00–19:00</strong>
+        </div>
+        <div class="hero-card-row">
+          <span>Адрес:</span>
+          <strong>Орск, ул. Ясная 32</strong>
+        </div>
+        <div class="hero-card-row">
+          <span>Основные услуги:</span>
+          <strong>двигатель, ходовая, АКПП/DSG, развал‑схождение</strong>
+        </div>
+        <div class="hero-phone">+7 (961) 927-40-40</div>
+</aside>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div>
+        <h2 class="section-title">Автосервис «Техник‑Авто» в Орске</h2>
+        <p class="section-sub">
+          Мы занимаемся ремонтом и обслуживанием автомобилей уже много лет и знаем, как быстро и аккуратно решить
+          большинство типичных и «не типичных» проблем с машиной.
+        </p>
+        <p style="font-size:14px;color:var(--text-muted);margin-bottom:8px;">
+          В работе используем профессиональное оборудование для диагностики и регулировки, а также уделяем внимание
+          мелочам: от качественных расходников до аккуратного обращения с салоном клиента.
+        </p>
+        <p style="font-size:14px;color:var(--text-muted);">
+          За время работы сервиса мы помогли сотням владельцев автомобилей вернуть уверенность в машине.
+          Ориентируемся не только на быстрый ремонт, но и на понятное объяснение причин поломки и вариантов решения.
+        </p>
+        <div class="pill-list">
+          <div class="pill">Любые виды рассчетов</div>
+          <div class="pill">Оригинальные и проверенные аналоги запчастей</div>
+          <div class="pill">Честная диагностика без навязывания лишних услуг</div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-tag">Для кого</div>
+          <h3>Иномарки и отечественные авто</h3>
+          <p>Работаем с популярными марками: VAG, Hyundai, Kia, Ford, Renault, Lada и другими.
+            Знаем типичные болячки конкретных моделей и быстро находим причину неисправности.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Основные услуги автосервиса</h2>
+      <p class="section-sub">
+        Выполняем как плановое обслуживание, так и сложный ремонт узлов. Ниже – основные направления, подробнее можно уточнить по телефону.
+      </p>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-tag">Двигатель</div>
+          <h3>Диагностика и ремонт двигателя</h3>
+<p>Диагностика потери тяги, повышенного расхода масла и топлива, посторонних звуков. 
+Замена ремней и цепи ГРМ, прокладок, насосов, ремонт ГБЦ и навесного оборудования.</p>
+<p><a href="/remont-dvigatelya.html">Подробнее...</a></p>
+        </div>
+        <div class="card">
+          <div class="card-tag">АКПП и DSG</div>
+          <h3>Обслуживание и ремонт коробок</h3>
+          <p>Диагностика рывков, толчков, задержек переключения. Замена масла и фильтров,
+            ремонт гидроблоков, сцеплений и мехатроников, адаптация после ремонта.</p>
+			<p><a href="/remont-akpp-dsg.html">Подробнее...</a></p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Подвеска</div>
+          <h3>Подвеска и ходовая часть</h3>
+          <p>Поиск стуков и вибраций, замена амортизаторов, сайлентблоков, шаровых опор, рулевых тяг и других элементов.
+            Настройка управляемости и комфорта.</p>
+			<p><a href="/podveska-hodovaya.html">Подробнее...</a></p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Развал‑схождение</div>
+          <h3>Развал‑схождение на стенде</h3>
+          <p>Точная регулировка углов установки колёс после ремонта подвески или при неравномерном износе шин.
+            Коррекция уводов автомобиля в сторону, улучшение устойчивости на дороге.</p>
+			<p><a href="/razval-skhozhdenie.html">Подробнее...</a></p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Диагностика</div>
+          <h3>Компьютерная диагностика</h3>
+          <p>Считывание и расшифровка ошибок, проверка параметров работы двигателя, АКПП и электрооборудования,
+            подготовка рекомендаций по ремонту и обслуживанию.</p>
+			<p><a href="/diagnostika-kompyuternaya.html">Подробнее...</a></p>
+        </div>
+        <div class="card">
+          <div class="card-tag">ТО</div>
+          <h3>Плановое техническое обслуживание</h3>
+          <p>Замена масла и фильтров, свечей, тормозной жидкости и других расходников по регламенту.
+            Помогаем подобрать оптимальный интервал обслуживания под ваши условия эксплуатации.</p>
+			<p><a href="/to-zamena-masla.html">Подробнее...</a></p>
+        </div>
+	    <div class="card">
+  <div class="card-tag">Карданные валы</div>
+  <h3>Ремонт и балансировка карданных валов</h3>
+  <p>Профессиональная диагностика, восстановление геометрии, устранение люфта и вибрации. Балансировка вала обеспечивает плавность хода и продлевает ресурс трансмиссии.</p>
+		    <p><a href="/kardannyj-val-remont-balansirovka.html">Подробнее....</a></p>
+</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container two-cols">
+      <div>
+        <h2 class="section-title">Почему выбирают «Техник‑Авто»</h2>
+        <p class="section-sub">
+          Мы делаем ставку на честную диагностику, нормальные сроки и понятное общение с владельцем автомобиля.
+        </p>
+        <ul style="font-size:14px;color:var(--text-muted);list-style:disc;margin-left:16px;">
+          <li>Говорим по факту и объясняем, что нужно сделать сейчас, а что можно отложить.</li>
+          <li>Согласуем  перечень работ.</li>
+          <li>Запчасти в наличии и на заказ.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:15px;margin-bottom:8px;">Частые вопросы</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:6px;">
+          <strong>Сколько стоит диагностика?</strong><br>
+          Стоимость зависит от узла и сложности неисправности.
+        </p>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:6px;">
+          <strong>Можно ли привезти свои запчасти?</strong><br>
+          Да, но мы рекомендуем проверенных поставщиков. При необходимости подберём и привезём запчасти под ваш автомобиль.
+        </p>
+</div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="container">
+      <h2 class="section-title">Отзывы клиентов</h2>
+      <p class="section-sub">
+        Вот что говорят владельцы автомобилей, которые уже обслуживаются у нас.
+      </p>
+      <div class="reviews-grid">
+        <div class="review">
+          <div class="review-name">Иван П.</div>
+          <div class="review-car">Volkswagen Passat</div>
+          <div>Долго не могли найти причину рывков коробки в другом сервисе. Здесь быстро диагностировали
+            проблему в мехатронике, согласовали ремонт и машину выдали в оговорённые сроки.</div>
+        </div>
+        <div class="review">
+          <div class="review-name">Алексей К.</div>
+          <div class="review-car">Hyundai Solaris</div>
+          <div>Делал развал‑схождение и замену стоек. Машина перестала уводить в сторону, руль стоит ровно.
+            Понравилось, что всё подробно показали и объяснили.</div>
+        </div>
+        <div class="review">
+          <div class="review-name">Мария С.</div>
+          <div class="review-car">Kia Rio</div>
+          <div>Регулярно прохожу ТО именно здесь. Помогают с подбором расходников, заранее предупреждают
+            о том, что скоро может потребоваться ремонт, без навязывания лишних услуг.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="container contacts-grid">
+      <div class="contact-list">
+        <h2 class="section-title">Контакты и запись</h2>
+        <p class="section-sub">Позвони, мы  предложим удобное время для визита.</p>
+        <p><span>Телефон:</span> <strong>+7 (961) 927-40-40</strong></p>
+        <p><span>Адрес:</span> Орск, ул. Ясная 32</p>
+        <p><span>Время работы:</span> ежедневно 9:00–19:00</p>
+        <p><span>Вконтакте:</span> <a href="https://vk.com/technicauto">Автосервис Техник‑Авто Орск</a></p>
+
+        <div style="margin-top:12px;">
+          <div style="font-size:12px;color:var(--text-muted);"> </div>
+        </div>
+      </div>
+</div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    © <span id="year"></span> <a href="https://technic-avto.ru">Автосервис «Техник‑Авто», Орск.</a> 
+  </div>
+</footer>
+
+<script>
+  function scrollToId(id){
+    const el = document.getElementById(id);
+    if(el){ el.scrollIntoView({behavior:'smooth'}); }
+
+  }
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
